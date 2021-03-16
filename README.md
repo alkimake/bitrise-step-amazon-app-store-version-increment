@@ -2,6 +2,7 @@
 
 For applications that is going to be published amazon app store, this step provides updated release version by receiving it from Amazon Appstore API
 
+**WARNING**: Currently only supports `AMAZON JAPAN`
 
 ## How to use this Step
 

@@ -64,24 +64,22 @@ toolkit:
 
 
 inputs:
-  - example_step_input: Default Value - you can leave this empty if you want to
+  - asin_number: ""
     opts:
-      title: "Example Step Input"
-      summary: Summary. No more than 2-3 sentences.
+      title: "ASIN Number"
+      summary: Amazon ASIN Number
       description: |
-        Description of this input.
-
-        Can be Markdown formatted text.
+        ASIN number can be found on product page (app page)
+        on Amazon website
       is_expand: true
       is_required: true
       value_options: []
 
 outputs:
-  - EXAMPLE_STEP_OUTPUT:
+  - AMAZON_RELEASE_VERSION:
     opts:
-      title: "Example Step Output"
-      summary: Summary. No more than 2-3 sentences.
+      title: "Updated Release Version"
+      summary: Incremented Amazon Release Version
       description: |
-        Description of this output.
-
-        Can be Markdown formatted text.
+        Version that is updated by increment `patch` number of 
+        current Released Version on Amazon
