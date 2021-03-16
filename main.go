@@ -74,15 +74,11 @@ func main() {
 	}
 
 	fmt.Println("'ASIN' number is :", asin_number)
-
 	currentVersion := currentVersion(asin_number)
 	log.Printf("Version is %x \n", currentVersion)
 	segments := currentVersion.Segments()
 	updatedVersion := fmt.Sprintf("%d.%d.%d", segments[0], segments[1], segments[2]+1)
 	log.Printf("Updated version is  %s \n", updatedVersion)
-
-	fmt.Println("Amazon client id is:", os.Getenv("amazon_client_id"))
-	fmt.Println("Amazon client secret is:", os.Getenv("amazon_client_secret"))
 
 	cmdLog, err := exec.Command("bitrise", "envman", "add", "--key", "AMAZON_RELEASE_VERSION", "--value", updatedVersion).CombinedOutput()
 	if err != nil {
