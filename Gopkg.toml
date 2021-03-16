@@ -1,0 +1,12 @@
+
+[[constraint]]
+  name = "github.com/PuerkitoBio/goquery"
+  version = "1.6.1"
+
+[[constraint]]
+  name = "github.com/hashicorp/go-version"
+  version = "1.2.1"
+
+[prune]
+  go-tests = true
+  unused-packages = true
