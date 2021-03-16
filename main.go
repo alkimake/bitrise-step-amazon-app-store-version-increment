@@ -12,12 +12,13 @@ import (
 	version "github.com/hashicorp/go-version"
 )
 
-func currentVersion() *version.Version {
+func currentVersion(asin_number string) *version.Version {
 	// Request the HTML page.
 
 	client := &http.Client{}
 
-	req, err := http.NewRequest("GET", "https://www.amazon.co.jp/dp/B07BNVLVBY", nil)
+	req, err := http.NewRequest("GET", "https://www.amazon.co.jp/dp/"+asin_number, nil)
+
 	if err != nil {
 		log.Fatalln(err)
 	}
@@ -65,9 +66,16 @@ func currentVersion() *version.Version {
 
 func main() {
 
-	fmt.Println("'ASIN' number is :", os.Getenv("asin_number"))
+	asin_number := strings.TrimSpace(os.Getenv("asin_number"))
 
-	currentVersion := currentVersion()
+	if asin_number == "" {
+		fmt.Println(" ASIN Number is invalid. Exiting...")
+		os.Exit(1)
+	}
+
+	fmt.Println("'ASIN' number is :", asin_number)
+
+	currentVersion := currentVersion(asin_number)
 	log.Printf("Version is %x \n", currentVersion)
 	segments := currentVersion.Segments()
 	updatedVersion := fmt.Sprintf("%d.%d.%d", segments[0], segments[1], segments[2]+1)
