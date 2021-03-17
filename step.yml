@@ -64,6 +64,15 @@ toolkit:
 
 
 inputs:
+  - amazon_store_location: "JP"
+    opts:
+      title: "Amazon Store"
+      summary: Amazon Store Location
+      description: |
+        Amazon Store Location (JP, US)
+      is_expand: true
+      is_required: true
+      value_options: ["JP", "US"]
   - asin_number: ""
     opts:
       title: "ASIN Number"
