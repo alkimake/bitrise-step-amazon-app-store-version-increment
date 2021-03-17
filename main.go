@@ -12,12 +12,22 @@ import (
 	version "github.com/hashicorp/go-version"
 )
 
-func currentVersion(asin_number string) *version.Version {
+func currentVersion(asin_number string, store string) *version.Version {
 	// Request the HTML page.
 
 	client := &http.Client{}
 
-	req, err := http.NewRequest("GET", "https://www.amazon.co.jp/dp/"+asin_number, nil)
+	var base_url string
+
+	switch store {
+	case "JP":
+		base_url = "https://www.amazon.co.jp/dp/"
+	case "US":
+	default:
+		base_url = "https://www.amazon.com/dp/"
+	}
+
+	req, err := http.NewRequest("GET", base_url+asin_number, nil)
 
 	if err != nil {
 		log.Fatalln(err)
@@ -67,6 +77,7 @@ func currentVersion(asin_number string) *version.Version {
 func main() {
 
 	asin_number := strings.TrimSpace(os.Getenv("asin_number"))
+	amazon_store := strings.TrimSpace(os.Getenv("amazon_store"))
 
 	if asin_number == "" {
 		fmt.Println(" ASIN Number is invalid. Exiting...")
@@ -74,7 +85,7 @@ func main() {
 	}
 
 	fmt.Println("'ASIN' number is :", asin_number)
-	currentVersion := currentVersion(asin_number)
+	currentVersion := currentVersion(asin_number, amazon_store)
 	log.Printf("Version is %x \n", currentVersion)
 	segments := currentVersion.Segments()
 	updatedVersion := fmt.Sprintf("%d.%d.%d", segments[0], segments[1], segments[2]+1)

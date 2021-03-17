@@ -64,7 +64,7 @@ toolkit:
 
 
 inputs:
-  - amazon_store_location: "JP"
+  - amazon_store: "JP"
     opts:
       title: "Amazon Store"
       summary: Amazon Store Location
