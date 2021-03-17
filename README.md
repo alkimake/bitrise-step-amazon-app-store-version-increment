@@ -1,6 +1,6 @@
 # Amazon App Store Version Increment
 
-For applications that is going to be published amazon app store, this step provides updated release version by receiving it from Amazon Appstore API
+For applications that is going to be published amazon app store, this step provides updated release version by receiving it from Amazon Store Webpage
 
 **WARNING**: Currently only supports Amazon `JAPAN` and `US`
 
